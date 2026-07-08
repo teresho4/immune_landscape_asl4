@@ -20,7 +20,7 @@ data <- FindClusters(data, resolution = 0.5)
 data.list <- SplitObject(data, split.by = "Donor")
 data.list <- lapply(X = data.list, FUN = function(x) {
   x <- FindVariableFeatures(x, selection.method = "vst", nfeatures = 3000)
-  x@assays$RNA@var.features <- x@assays$RNA@var.features[!grepl("^TRA|^TRB|^IGH|^IGK|^IGL", x@assays$RNA@var.features)]
+  x@assays$RNA@var.features <- x@assays$RNA@var.features[!grepl("^TRA|^TRB", x@assays$RNA@var.features)]
   x
 })
 features <- SelectIntegrationFeatures(object.list = data.list, nfeatures = 2000)
